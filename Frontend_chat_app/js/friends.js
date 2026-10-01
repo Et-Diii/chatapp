@@ -8,7 +8,7 @@ async function loadPage() {
   try {
     const friends = await loadFriends();
     document.querySelector('[data-friend-count]').textContent = String(friends.length);
-    friendsEl.innerHTML = friends.length ? friends.map(friend => renderPersonCard(friend, '<button class="button button-primary" data-chat>Message →</button><button class="button button-outline" data-remove>Remove</button>')).join('') : '<p class="empty-state">Your circle starts with a hello. Find someone to connect with.</p>';
+    friendsEl.innerHTML = friends.length ? friends.map(friend => renderPersonCard(friend, '<button class="button button-primary" data-chat>Nhắn tin →</button><button class="button button-outline" data-remove>Xóa bạn</button>')).join('') : '<p class="empty-state">Vòng tròn bạn bè bắt đầu từ một lời chào. Hãy tìm người để kết nối.</p>';
     friendsEl.querySelectorAll('[data-chat]').forEach((button, index) => button.addEventListener('click', async () => {
       button.disabled = true;
       try { await startConversation(friends[index]); }
@@ -30,11 +30,11 @@ async function loadRequests(kind, ...urls) {
   try {
     const requests = await endpointList(...urls);
     if (kind === 'received') document.querySelector('[data-received-count]').textContent = String(requests.length);
-    if (!requests.length) { element.innerHTML = '<p class="muted small">Nothing here right now.</p>'; return; }
+    if (!requests.length) { element.innerHTML = '<p class="muted small">Chưa có lời mời nào.</p>'; return; }
     element.innerHTML = requests.map(request => {
       const user = personFromRequest(request, kind);
-      if (kind === 'sent') return renderPersonRow(user, '<span class="muted small">Request sent</span><button class="button button-outline" data-cancel>Cancel</button>');
-      return renderPersonRow(user, '<button class="button button-primary" data-accept>Accept</button><button class="button button-danger" data-reject>Reject</button>');
+      if (kind === 'sent') return renderPersonRow(user, '<span class="muted small">Đã gửi lời mời</span><button class="button button-outline" data-cancel>Thu hồi</button>');
+      return renderPersonRow(user, '<button class="button button-primary" data-accept>Chấp nhận</button><button class="button button-danger" data-reject>Từ chối</button>');
     }).join('');
     if (kind === 'received') element.querySelectorAll('.person-row').forEach((row, index) => {
       row.querySelector('[data-accept]').addEventListener('click', () => updateRequest(row, requests[index], 'accept'));

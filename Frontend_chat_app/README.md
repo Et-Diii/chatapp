@@ -1,4 +1,4 @@
-# ChatApp Frontend
+# Rinchat — Giao diện
 
 Frontend thuần HTML, CSS và JavaScript. Thư mục này chạy độc lập với Spring Boot backend.
 

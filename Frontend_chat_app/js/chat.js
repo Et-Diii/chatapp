@@ -9,7 +9,7 @@ async function initChat() {
   const history = document.querySelector('[data-messages]');
   const error = document.querySelector('[data-chat-error]');
   const current = getCurrentUser() || {};
-  if (!conversationId) { history.innerHTML = '<p class="empty-state">This conversation link is missing its ID.</p>'; return; }
+  if (!conversationId) { history.innerHTML = '<p class="empty-state">Đường dẫn cuộc trò chuyện đang thiếu mã.</p>'; return; }
 
   let contactOnline = false;
   let oldestPage = 0;
@@ -23,7 +23,7 @@ async function initChat() {
     const messages = Array.isArray(data) ? data : data?.content || data?.items || data?.messages || [];
     messages.sort((a, b) => new Date(a.createdAt || a.timestamp || 0) - new Date(b.createdAt || b.timestamp || 0));
     history.replaceChildren();
-    if (!messages.length) history.innerHTML = '<p class="empty-state">Say hello and start the conversation.</p>';
+    if (!messages.length) history.innerHTML = '<p class="empty-state">Hãy gửi lời chào để bắt đầu trò chuyện.</p>';
     else {
       messages.forEach(message => renderMessage(message));
       if (oldestPage > 0) addOlderMessagesButton();
@@ -42,9 +42,9 @@ async function initChat() {
       document.querySelector('[data-chat-name]').textContent = nameOf(person);
       const avatar = document.querySelector('[data-chat-avatar]');
       const url = person.avatarUrl || person.avatar;
-      avatar.src = url || `https://placehold.co/96x96/e9e7ff/6559d9?text=${encodeURIComponent(initials(nameOf(person)))}`;
-      avatar.alt = `${nameOf(person)} avatar`;
-      document.title = `${nameOf(person)} · ChatApp`;
+      avatar.src = url || `https://placehold.co/96x96/dff1ec/176b63?text=${encodeURIComponent(initials(nameOf(person)))}`;
+      avatar.alt = `Ảnh đại diện của ${nameOf(person)}`;
+      document.title = `${nameOf(person)} · Rinchat`;
       updateContactStatus();
     }
   } catch { /* Conversation list may be unavailable while messages still load. */ }
@@ -56,7 +56,7 @@ async function initChat() {
         if (message.eventType === 'READ') {
           const bubble = history.querySelector(`[data-message-id="${CSS.escape(String(message.id))}"]`);
           const status = bubble?.querySelector('.message-status');
-          if (status) status.textContent = 'Seen';
+          if (status) status.textContent = 'Đã xem';
         } else {
           renderMessage(message, conversationId);
           const senderId = message.senderId ?? message.sender?.id ?? message.sender?.userId;
@@ -88,7 +88,7 @@ async function initChat() {
 
   function updateContactStatus() {
     const status = document.querySelector('[data-chat-status]');
-    if (status) status.innerHTML = `<i class="status-dot ${contactOnline ? '' : 'is-offline'}"></i> ${contactOnline ? 'Online' : 'Offline'}`;
+    if (status) status.innerHTML = `<i class="status-dot ${contactOnline ? '' : 'is-offline'}"></i> ${contactOnline ? 'Trực tuyến' : 'Ngoại tuyến'}`;
   }
 
   function addOlderMessagesButton() {
@@ -97,11 +97,11 @@ async function initChat() {
     button.type = 'button';
     button.dataset.loadOlder = '';
     button.className = 'button button-quiet';
-    button.textContent = 'Load older messages';
+    button.textContent = 'Tải tin nhắn cũ hơn';
     button.addEventListener('click', async () => {
       if (oldestPage <= 0) return;
       button.disabled = true;
-      button.textContent = 'Loading…';
+      button.textContent = 'Đang tải…';
       const previousHeight = history.scrollHeight;
       try {
         const data = await apiData(`/api/conversations/${encodeURIComponent(conversationId)}/messages?page=${oldestPage - 1}&size=30`);
@@ -110,10 +110,10 @@ async function initChat() {
         older.reverse().forEach(message => history.insertBefore(createMessageNode(message), history.querySelector('[data-message-id]')));
         history.scrollTop += history.scrollHeight - previousHeight;
         if (oldestPage === 0) button.remove();
-        else { button.disabled = false; button.textContent = 'Load older messages'; }
+        else { button.disabled = false; button.textContent = 'Tải tin nhắn cũ hơn'; }
       } catch (err) {
         button.disabled = false;
-        button.textContent = 'Retry loading older messages';
+        button.textContent = 'Thử tải lại tin nhắn cũ';
         showMessage(error, err.message);
       }
     });
@@ -131,11 +131,11 @@ async function initChat() {
     const content = message.content ?? message.message ?? '';
     const stamp = message.createdAt || message.timestamp || message.sentAt;
     let time = '';
-    if (stamp) { const date = new Date(stamp); if (!Number.isNaN(date.getTime())) time = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+    if (stamp) { const date = new Date(stamp); if (!Number.isNaN(date.getTime())) time = date.toLocaleTimeString('vi-VN', { hour: 'numeric', minute: '2-digit' }); }
     const node = document.createElement('article');
     node.dataset.messageId = message.id ?? '';
     node.className = `message ${mine ? 'mine' : 'theirs'}`;
-    node.innerHTML = `<div class="message-bubble">${escapeHtml(content)}</div>${time ? `<time class="message-time">${escapeHtml(time)}</time>` : ''}${mine ? `<span class="message-status">${message.isRead ? 'Seen' : 'Sent'}</span>` : ''}`;
+    node.innerHTML = `<div class="message-bubble">${escapeHtml(content)}</div>${time ? `<time class="message-time">${escapeHtml(time)}</time>` : ''}${mine ? `<span class="message-status">${message.isRead ? 'Đã xem' : 'Đã gửi'}</span>` : ''}`;
     return node;
   }
 }

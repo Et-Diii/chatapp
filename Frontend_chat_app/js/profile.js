@@ -14,14 +14,14 @@ async function loadProfile() {
   const status = String(user.status || 'OFFLINE').toUpperCase();
   const statusEl = document.querySelector('[data-profile-status]');
   statusEl.classList.toggle('is-offline', status !== 'ONLINE');
-  statusEl.lastChild.textContent = status === 'ONLINE' ? ' Online' : ' Offline';
+  statusEl.lastChild.textContent = status === 'ONLINE' ? ' Trực tuyến' : ' Ngoại tuyến';
   connectWebSocket(() => {
     statusEl.classList.remove('is-offline');
-    statusEl.lastChild.textContent = ' Online';
+    statusEl.lastChild.textContent = ' Trực tuyến';
   });
   const avatar = document.querySelector('[data-profile-avatar]');
-  avatar.src = avatarUrl(user) || `https://placehold.co/96x96/e9e7ff/6559d9?text=${encodeURIComponent(nameOf(user).slice(0, 1).toUpperCase())}`;
-  avatar.alt = `${nameOf(user)} avatar`;
+  avatar.src = avatarUrl(user) || `https://placehold.co/96x96/dff1ec/176b63?text=${encodeURIComponent(nameOf(user).slice(0, 1).toUpperCase())}`;
+  avatar.alt = `Ảnh đại diện của ${nameOf(user)}`;
   const form = document.querySelector('[data-profile-form]');
   form.elements.displayName.value = user.displayName || user.name || '';
   form.elements.avatarUrl.value = avatarUrl(user);
@@ -32,7 +32,7 @@ async function loadProfile() {
     showMessage(error, ''); showMessage(success, '');
     const displayName = form.elements.displayName.value.trim();
     const url = form.elements.avatarUrl.value.trim();
-    if (!displayName) return showMessage(error, 'Display name is required.');
+    if (!displayName) return showMessage(error, 'Vui lòng nhập tên hiển thị.');
     const button = form.querySelector('button[type="submit"]'); button.disabled = true;
     try {
       const updated = await apiData('/api/users/me', { method: 'PUT', body: JSON.stringify({ displayName, avatarUrl: url || null }) });
@@ -41,9 +41,9 @@ async function loadProfile() {
       document.querySelector('[data-profile-name]').textContent = nameOf(user);
       document.querySelector('[data-profile-username]').textContent = user.username ? `@${user.username}` : '';
       document.querySelector('[data-current-name]') && (document.querySelector('[data-current-name]').textContent = nameOf(user));
-      avatar.src = url || `https://placehold.co/96x96/e9e7ff/6559d9?text=${encodeURIComponent(nameOf(user).slice(0, 1).toUpperCase())}`;
+      avatar.src = url || `https://placehold.co/96x96/dff1ec/176b63?text=${encodeURIComponent(nameOf(user).slice(0, 1).toUpperCase())}`;
       document.querySelectorAll('[data-current-avatar]').forEach(image => image.src = avatar.src);
-      showMessage(success, 'Your profile has been updated.', 'success');
+      showMessage(success, 'Đã cập nhật hồ sơ.', 'success');
     } catch (err) { showMessage(error, err.message); }
     finally { button.disabled = false; }
   });

@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fc">
-  <title>ChatApp · Messages</title>
+  <meta name="theme-color" content="#f3f7f6">
+  <title>Rinchat · Tin nhắn</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/chat.css">
   <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
@@ -15,52 +15,51 @@
 
 <body class="app-shell">
   <header class="topbar">
-    <a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
-    <nav class="topnav" aria-label="Main navigation">
-      <a class="active" href="/index.html">Messages</a><a href="/friends.html">Friends</a><a
-        href="/search.html">Discover</a>
+    <a class="brand" href="/index.html"><span class="brand-mark">R</span>Rinchat</a>
+    <nav class="topnav" aria-label="Điều hướng chính">
+      <a class="active" href="/index.html">Tin nhắn</a><a href="/friends.html">Bạn bè</a><a
+        href="/search.html">Khám phá</a>
     </nav>
     <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
-          data-current-avatar alt=""><span data-current-name>My profile</span></a><button class="button button-quiet"
-        data-logout>Log out</button></div>
+          data-current-avatar alt=""><span data-current-name>Hồ sơ của tôi</span></a><button class="button button-quiet"
+        data-logout>Đăng xuất</button></div>
   </header>
   <main class="workspace">
     <aside class="sidebar panel">
       <div class="sidebar-heading">
         <div>
-          <p class="eyebrow">YOUR SPACE</p>
-          <h1>Messages</h1>
-        </div><a class="icon-button" href="/search.html" aria-label="Find people" title="Find people">＋</a>
+          <p class="eyebrow">GÓC TRÒ CHUYỆN</p>
+          <h1>Tin nhắn</h1>
+        </div><a class="icon-button" href="/search.html" aria-label="Tìm người" title="Tìm người">＋</a>
       </div>
-      <a class="search-link" href="/search.html"><span aria-hidden="true">⌕</span> Search people <span
+      <a class="search-link" href="/search.html"><span aria-hidden="true">⌕</span> Tìm người <span
           class="key-hint">⌘ K</span></a>
       <section class="side-section">
         <div class="section-heading">
-          <h2>Friend requests</h2><a href="/friends.html#requests" class="text-link">View all</a>
+          <h2>Lời mời kết bạn</h2><a href="/friends.html#requests" class="text-link">Xem tất cả</a>
         </div>
         <div data-request-preview class="compact-list">
-          <p class="muted small">Loading requests…</p>
+          <p class="muted small">Đang tải lời mời…</p>
         </div>
       </section>
       <section class="side-section conversations-section">
         <div class="section-heading">
-          <h2>Conversations</h2><span class="muted small" data-conversation-count></span>
+          <h2>Cuộc trò chuyện</h2><span class="muted small" data-conversation-count></span>
         </div>
         <div data-conversations class="conversation-list">
-          <p class="muted small">Loading conversations…</p>
+          <p class="muted small">Đang tải cuộc trò chuyện…</p>
         </div>
       </section>
-      <div class="sidebar-footer"><a href="/profile.html">⚙ &nbsp;Account settings</a><span>Stay close, wherever you
-          are.</span></div>
+      <div class="sidebar-footer"><a href="/profile.html">⚙ &nbsp;Cài đặt tài khoản</a><span>Luôn kết nối với những người bạn quý mến.</span></div>
     </aside>
     <section class="welcome panel">
       <div class="welcome-art" aria-hidden="true"><span class="art-orbit orbit-one"></span><span
-          class="art-orbit orbit-two"></span><span class="art-bubble bubble-one">Hey there 👋</span><span
-          class="art-bubble bubble-two">How’s your day?</span><span class="art-center">C</span></div>
-      <p class="eyebrow">A LITTLE CLOSER</p>
-      <h2>Your conversations,<br>all in one place.</h2>
-      <p class="welcome-copy">Pick up where you left off, or find someone new to talk to.</p><a
-        class="button button-primary" href="/search.html">Find your people <span aria-hidden="true">→</span></a>
+          class="art-orbit orbit-two"></span><span class="art-bubble bubble-one">Xin chào 👋</span><span
+          class="art-bubble bubble-two">Hôm nay của bạn thế nào?</span><span class="art-center">R</span></div>
+      <p class="eyebrow">GẦN NHAU HƠN MỘT CHÚT</p>
+      <h2>Mọi cuộc trò chuyện,<br>gói gọn trong một nơi.</h2>
+      <p class="welcome-copy">Tiếp tục câu chuyện còn dang dở hoặc tìm một người bạn mới.</p><a
+        class="button button-primary" href="/search.html">Tìm bạn bè <span aria-hidden="true">→</span></a>
     </section>
   </main>
 </body>

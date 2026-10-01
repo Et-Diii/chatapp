@@ -1,4 +1,4 @@
-# ChatApp Backend
+# Rinchat Backend
 
 Spring Boot backend cung cấp REST API và WebSocket/STOMP. Frontend nằm riêng tại `../Frontend_chat_app`.
 

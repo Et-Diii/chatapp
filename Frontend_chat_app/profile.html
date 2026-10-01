@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your profile · ChatApp</title>
+    <title>Hồ sơ của tôi · Rinchat</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/profile.css">
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
@@ -13,44 +13,43 @@
 </head>
 
 <body class="app-shell">
-    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
-        <nav class="topnav" aria-label="Main navigation"><a href="/index.html">Messages</a><a
-                href="/friends.html">Friends</a><a href="/search.html">Discover</a></nav>
+    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">R</span>Rinchat</a>
+        <nav class="topnav" aria-label="Điều hướng chính"><a href="/index.html">Tin nhắn</a><a
+                href="/friends.html">Bạn bè</a><a href="/search.html">Khám phá</a></nav>
         <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
-                    data-current-avatar alt=""><span data-current-name>My profile</span></a><button
-                class="button button-quiet" data-logout>Log out</button></div>
+                    data-current-avatar alt=""><span data-current-name>Hồ sơ của tôi</span></a><button
+                class="button button-quiet" data-logout>Đăng xuất</button></div>
     </header>
     <main class="page-wrap profile-wrap">
         <div class="page-heading">
             <div>
-                <p class="eyebrow">ACCOUNT</p>
-                <h1>Your profile</h1>
-                <p class="muted">Make this space feel like you.</p>
+                <p class="eyebrow">TÀI KHOẢN</p>
+                <h1>Hồ sơ của bạn</h1>
+                <p class="muted">Hãy thể hiện cá tính của bạn.</p>
             </div>
         </div>
         <div class="profile-layout">
             <section class="panel profile-summary">
-                <div class="profile-cover"></div><img class="avatar avatar-xl" data-profile-avatar alt="Profile avatar">
-                <h2 data-profile-name>Loading profile…</h2>
+                <div class="profile-cover"></div><img class="avatar avatar-xl" data-profile-avatar alt="Ảnh hồ sơ">
+                <h2 data-profile-name>Đang tải hồ sơ…</h2>
                 <p class="muted" data-profile-username></p><span class="online-label" data-profile-status><i></i>
-                    Offline</span>
+                    Ngoại tuyến</span>
                 <div class="profile-details">
                     <div><span>Email</span><strong data-profile-email>—</strong></div>
-                    <div><span>Username</span><strong data-profile-handle>—</strong></div>
+                    <div><span>Tên tài khoản</span><strong data-profile-handle>—</strong></div>
                 </div>
             </section>
             <section class="panel content-panel profile-edit">
-                <p class="eyebrow">PERSONAL DETAILS</p>
-                <h2>Edit your profile</h2>
-                <p class="muted">Choose how friends see you.</p>
-                <form data-profile-form><label for="editDisplayName">Display name</label><input id="editDisplayName"
-                        name="displayName" autocomplete="name" required><label for="avatarUrl">Avatar image
-                        URL</label><input id="avatarUrl" name="avatarUrl" type="url"
+                <p class="eyebrow">THÔNG TIN CÁ NHÂN</p>
+                <h2>Chỉnh sửa hồ sơ</h2>
+                <p class="muted">Cập nhật thông tin hiển thị với bạn bè.</p>
+                <form data-profile-form><label for="editDisplayName">Tên hiển thị</label><input id="editDisplayName"
+                        name="displayName" autocomplete="name" required><label for="avatarUrl">Đường dẫn ảnh đại diện</label><input id="avatarUrl" name="avatarUrl" type="url"
                         placeholder="https://example.com/photo.jpg">
-                    <p class="form-hint">Use a publicly accessible image link.</p>
+                    <p class="form-hint">Nhập liên kết ảnh có thể truy cập công khai.</p>
                     <p class="form-error" data-error role="alert" aria-live="polite"></p>
                     <p class="form-success" data-success role="status" aria-live="polite"></p><button
-                        class="button button-primary" type="submit">Save changes <span
+                        class="button button-primary" type="submit">Lưu thay đổi <span
                             aria-hidden="true">→</span></button>
                 </form>
             </section>

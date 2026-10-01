@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Conversation · ChatApp</title>
+    <title>Trò chuyện · Rinchat</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/chat.css">
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
@@ -12,28 +12,28 @@
 
 <body class="app-shell chat-page">
     <header class="topbar chat-topbar"><a class="brand" href="/index.html"><span
-                class="brand-mark">C</span>ChatApp</a><a class="button button-quiet back-link" href="/index.html">←
-            <span>All messages</span></a>
+                class="brand-mark">R</span>Rinchat</a><a class="button button-quiet back-link" href="/index.html">←
+            <span>Tất cả tin nhắn</span></a>
         <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
-                    data-current-avatar alt=""><span data-current-name>My profile</span></a><button
-                class="button button-quiet" data-logout>Log out</button></div>
+                    data-current-avatar alt=""><span data-current-name>Hồ sơ của tôi</span></a><button
+                class="button button-quiet" data-logout>Đăng xuất</button></div>
     </header>
     <main class="chat-layout panel">
         <header class="chat-header"><a class="icon-button mobile-back" href="/index.html"
-                aria-label="Back to conversations">←</a><img class="avatar" data-chat-avatar alt="">
+                aria-label="Quay lại cuộc trò chuyện">←</a><img class="avatar" data-chat-avatar alt="">
             <div class="chat-person">
-                <h1 data-chat-name>Conversation</h1>
-                <p data-chat-status><i class="status-dot"></i> Connecting…</p>
-            </div><button class="icon-button" aria-label="Conversation options"
-                title="Conversation details">···</button>
+                <h1 data-chat-name>Cuộc trò chuyện</h1>
+                <p data-chat-status><i class="status-dot"></i> Đang kết nối…</p>
+            </div><button class="icon-button" aria-label="Tùy chọn cuộc trò chuyện"
+                title="Thông tin cuộc trò chuyện">···</button>
         </header>
-        <section class="messages" data-messages aria-live="polite" aria-label="Messages">
-            <div class="loading-state">Loading conversation…</div>
+        <section class="messages" data-messages aria-live="polite" aria-label="Tin nhắn">
+            <div class="loading-state">Đang tải cuộc trò chuyện…</div>
         </section>
-        <form class="composer" data-message-form><label class="sr-only" for="messageInput">Type a
-                message</label><textarea id="messageInput" name="content" rows="1" maxlength="4000"
-                placeholder="Write a message…" required></textarea><button class="button button-primary send-button"
-                type="submit"><span>Send</span><span aria-hidden="true">↑</span></button></form>
+        <form class="composer" data-message-form><label class="sr-only" for="messageInput">Nhập
+                tin nhắn</label><textarea id="messageInput" name="content" rows="1" maxlength="4000"
+                placeholder="Soạn tin nhắn…" required></textarea><button class="button button-primary send-button"
+                type="submit"><span>Gửi</span><span aria-hidden="true">↑</span></button></form>
         <p class="chat-error" data-chat-error role="status" aria-live="polite"></p>
     </main>
     <script src="/js/config.js"></script>

@@ -14,7 +14,7 @@ export function connectWebSocket(onConnected, onError) {
   }
   const StompClient = window.StompJs?.Client;
   if (!StompClient) {
-    const error = new Error('The messaging connection library did not load. Refresh and try again.');
+    const error = new Error('Không tải được thư viện nhắn tin. Hãy tải lại trang.');
     errorCallbacks.forEach(callback => callback(error));
     return null;
   }
@@ -27,8 +27,8 @@ export function connectWebSocket(onConnected, onError) {
     heartbeatIncoming: 10000,
     heartbeatOutgoing: 10000,
     onConnect: () => { connectedCallbacks.forEach(callback => callback(client)); },
-    onStompError: frame => errorCallbacks.forEach(callback => callback(new Error(frame.headers.message || 'Messaging service returned an error.'))),
-    onWebSocketError: () => errorCallbacks.forEach(callback => callback(new Error('Could not connect to the messaging service.')))
+    onStompError: () => errorCallbacks.forEach(callback => callback(new Error('Dịch vụ nhắn tin gặp sự cố.'))),
+    onWebSocketError: () => errorCallbacks.forEach(callback => callback(new Error('Không thể kết nối dịch vụ nhắn tin.')))
   });
   client.activate();
   return client;
@@ -46,7 +46,7 @@ export function subscribeToMessages(callback) {
 }
 
 export function sendMessage(conversationId, content) {
-  if (!client?.connected) throw new Error('Connecting… please try sending again in a moment.');
+  if (!client?.connected) throw new Error('Đang kết nối… vui lòng thử gửi lại sau ít giây.');
   client.publish({ destination: '/app/chat', body: JSON.stringify({ conversationId, content }) });
 }
 

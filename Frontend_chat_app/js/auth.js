@@ -10,7 +10,7 @@ export async function submitLogin(identifier, password) {
     body: JSON.stringify({ identifier, password })
   });
   const token = result?.token || result?.accessToken || result?.jwt;
-  if (!token) throw new Error('The server did not return a login token.');
+  if (!token) throw new Error('Máy chủ không trả về mã đăng nhập.');
   localStorage.setItem('token', token);
   const user = result.user || result.profile || { username: identifier };
   localStorage.setItem('user', JSON.stringify(user));

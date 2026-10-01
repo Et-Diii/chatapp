@@ -1,58 +1,57 @@
-# Deploy ChatApp gratuit sur Render + Aiven
+# Triển khai ChatApp miễn phí trên Render + Aiven
 
-Cette configuration utilise Render pour les sites statiques et le backend Docker, et Aiven pour MySQL. C'est adapté à une démo ou un projet personnel : Render suspend les services web gratuits après 15 minutes sans trafic, puis le prochain réveil peut prendre environ une minute. Le MySQL gratuit d'Aiven fournit 1 CPU, 1 Go de RAM et 1 Go de stockage et peut être arrêté après une longue période d'inactivité. Consultez les limites actuelles : [Render Free](https://render.com/docs/free), [Aiven MySQL Free](https://aiven.io/docs/products/mysql/concepts/mysql-free-tier).
+Thiết lập này sử dụng Render cho các trang web tĩnh và backend chạy bằng Docker, còn Aiven được dùng cho cơ sở dữ liệu MySQL. Giải pháp này phù hợp cho bản demo hoặc dự án cá nhân: Render sẽ tạm dừng các dịch vụ web miễn phí sau 15 phút không có hoạt động, và quá trình khởi động lại sau đó có thể mất khoảng một phút. Gói MySQL miễn phí của Aiven cung cấp 1 CPU, 1 GB RAM và 1 GB dung lượng lưu trữ, đồng thời có thể tự động tắt sau một thời gian dài không hoạt động. Hãy kiểm tra các giới hạn hiện tại tại: [Render Free](https://render.com/docs/free), [Aiven MySQL Free](https://aiven.io/docs/products/mysql/concepts/mysql-free-tier).
 
-## 1. Créer la base de données
+## 1. Tạo cơ sở dữ liệu
 
-1. Créez un compte Aiven et créez **MySQL Free**.
-2. Attendez l'état `Running`, puis ouvrez les informations de connexion.
-3. Notez host, port, database, username et password. Gardez les identifiants secrets.
+1. Tạo tài khoản Aiven và thiết lập một instance **MySQL Free**.
+2. Chờ cho đến khi trạng thái hiển thị là `Running`, sau đó mở phần thông tin kết nối.
+3. Ghi lại các thông tin: host, port, tên cơ sở dữ liệu, tên người dùng và mật khẩu. Hãy bảo mật các thông tin này.
 
-Aiven donne aussi un exemple JDBC; ce projet accepte le mode TLS avec `DB_SSL_MODE=REQUIRED`. Voir [Aiven Java connection guide](https://aiven.io/docs/products/mysql/howto/connect-with-java).
+Aiven cũng cung cấp ví dụ về kết nối JDBC; dự án này hỗ trợ chế độ TLS thông qua biến môi trường `DB_SSL_MODE=REQUIRED`. Xem thêm tại [hướng dẫn kết nối Java của Aiven](https://aiven.io/docs/products/mysql/howto/connect-with-java).
 
-## 2. Déployer le Backend
+## 2. Triển khai backend
 
-1. Connectez le dépôt GitHub à Render et créez un **Web Service**.
-2. Choisissez le même dépôt et branche.
-3. Réglez **Root Directory** sur `chat_app`. Render détectera le `Dockerfile` de ce dossier.
-4. Choisissez **Free** pour une démo.
-5. Ajoutez ces variables d'environnement avec les valeurs Aiven :
+1. Kết nối kho mã nguồn (repository) trên GitHub với Render và tạo một **Web Service**.
+2. Chọn đúng kho mã nguồn và nhánh (branch) cần triển khai.
+3. Thiết lập **Root Directory** (Thư mục gốc) là `chat_app`. Render sẽ tự động nhận diện tệp `Dockerfile` nằm trong thư mục này.
+4. Chọn gói **Free** (Miễn phí) để chạy bản demo. 5. Thêm các biến môi trường này với giá trị Aiven:
 
-   ```text
-   DB_HOST=<Aiven host>
-   DB_PORT=<Aiven port>
-   DB_NAME=<Aiven database>
-   DB_USERNAME=<Aiven username>
-   DB_PASSWORD=<Aiven password>
-   DB_SSL_MODE=REQUIRED
-   JWT_SECRET=<chuỗi ngẫu nhiên riêng, ít nhất 32 bytes>
-   JWT_EXPIRATION=86400000
-   JPA_SHOW_SQL=false
-   CHAT_ALLOWED_ORIGINS=https://<ten-frontend>.onrender.com
-   ```
+```văn bản
+DB_HOST=<máy chủ Aiven>
+DB_PORT=<Cổng Aiven>
+DB_NAME=<Cơ sở dữ liệu Aiven>
+DB_USERNAME=<Tên người dùng Aiven>
+DB_PASSWORD=<Mật khẩu aiven>
+DB_SSL_MODE=BẮT BUỘC
+JWT_SECRET=<Cung cấp chuỗi ngẫu nhiên, tối thiểu 32 byte>
+JWT_EXPIATION=86400000
+JPA_SHOW_SQL=sai
+CHAT_ALLOWED_ORIGINS=https://<ten-frontend>.onrender.com
+```
 
-6. Tạo service để lấy domain Backend, dạng `https://<ten-backend>.onrender.com`.
+6. Tạo dịch vụ lấy tên miền Backend, dạng `https://<ten-backend>.onrender.com`.
 
-Ứng dụng lắng nghe cổng Render cấp qua biến `PORT`.
+Ứng dụng lắng nghe cổng Render cấp độ qua biến `PORT`.
 
-## 3. Deploy Frontend
+## 3. Triển khai giao diện người dùng
 
-1. Tạo **Static Site** từ cùng repo.
-2. Đặt **Root Directory** thành `Frontend_chat_app`.
-3. Đặt **Build Command** thành:
+1. Tạo **Trang web tĩnh** từ cùng một kho lưu trữ.
+2. Đặt **Thư mục gốc** thay vì `Frontend_chat_app`.
+3. Đặt **Lệnh xây dựng** thành:
 
-   ```sh
-   printf "window.CHAT_API_BASE_URL = '%s';\n" "$CHAT_API_BASE_URL" > js/config.js
-   ```
+```sh
+printf "window.CHAT_API_BASE_URL = '%s';\n" "$CHAT_API_BASE_URL" > js/config.js
+```
 
-4. Đặt **Publish Directory** thành `.`.
-5. Tạo biến `CHAT_API_BASE_URL` với domain backend, ví dụ `https://<ten-backend>.onrender.com`.
-6. Deploy; Render cấp domain frontend dạng `https://<ten-frontend>.onrender.com`.
+4. Đặt **Xuất bản thư mục** thành `.`.
+5. Bạn có thể tìm thấy `CHAT_API_BASE_URL` trong phần phụ trợ của miền, xem `https://<ten-backend>.onrender.com`.
+6. Triển khai; Kết xuất giao diện người dùng miền cấp dưới dạng `https://<ten-frontend>.onrender.com`.
 
-Sau khi domain Frontend có, cập nhật `CHAT_ALLOWED_ORIGINS` trên Backend bằng đúng origin FE (`https://...`, không có dấu `/` cuối), rồi redeploy Backend.
+Sau khi có Frontend tên miền, cập nhật `CHAT_ALLOWED_ORIGINS` trên Backend with right Origin FE (`https://...`, không có dấu `/` end), sau đó triển khai lại Backend.
 
 ## 4. Kiểm tra
 
-Mở domain Frontend, tạo tài khoản, gửi tin nhắn, tải lại trang và thử kết nối realtime. Nếu CORS lỗi, kiểm tra `CHAT_ALLOWED_ORIGINS`. Nếu MySQL không kết nối được, đối chiếu host/port/credentials của Aiven và đảm bảo `DB_SSL_MODE=REQUIRED`.
+Mở giao diện miền, tạo tài khoản, gửi tin nhắn, tải lại trang và thử kết nối thời gian thực. Nếu CORS bị lỗi, hãy kiểm tra `CHAT_ALLOWED_ORIGINS`. Bên cạnh MySQL, bạn có thể sử dụng máy chủ/cổng/thông tin xác thực để tìm `DB_SSL_MODE=REQUIRED`.
 
-Static sites và Free web services hiện được cung cấp miễn phí trên Render, nhưng free web services có giới hạn và không được Render khuyến nghị cho production. [Render free service limits](https://render.com/docs/free).
+Các trang web tĩnh và dịch vụ web miễn phí hiện được cung cấp miễn phí trên Render, nhưng các dịch vụ web miễn phí có giới hạn và không được Render khuyến khích cho sản xuất. [Giới hạn dịch vụ miễn phí kết xuất](https://render.com/docs/free).

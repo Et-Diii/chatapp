@@ -1,4 +1,4 @@
-# ChatApp
+# Rinchat
 
 Ứng dụng chat tách thành hai phần độc lập:
 

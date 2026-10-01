@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Friends · ChatApp</title>
+    <title>Bạn bè · Rinchat</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/friends.css">
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
@@ -13,39 +13,39 @@
 </head>
 
 <body class="app-shell">
-    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
-        <nav class="topnav" aria-label="Main navigation"><a href="/index.html">Messages</a><a class="active"
-                href="/friends.html">Friends</a><a href="/search.html">Discover</a></nav>
+    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">R</span>Rinchat</a>
+        <nav class="topnav" aria-label="Điều hướng chính"><a href="/index.html">Tin nhắn</a><a class="active"
+                href="/friends.html">Bạn bè</a><a href="/search.html">Khám phá</a></nav>
         <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
-                    data-current-avatar alt=""><span data-current-name>My profile</span></a><button
-                class="button button-quiet" data-logout>Log out</button></div>
+                    data-current-avatar alt=""><span data-current-name>Hồ sơ của tôi</span></a><button
+                class="button button-quiet" data-logout>Đăng xuất</button></div>
     </header>
     <main class="page-wrap">
         <div class="page-heading">
             <div>
-                <p class="eyebrow">YOUR PEOPLE</p>
-                <h1>Friends</h1>
-                <p class="muted">Keep up with the people who make your day.</p>
-            </div><a class="button button-primary" href="/search.html">＋ Find people</a>
+                <p class="eyebrow">NHỮNG NGƯỜI BẠN QUÝ MẾN</p>
+                <h1>Bạn bè</h1>
+                <p class="muted">Kết nối với những người làm ngày của bạn thêm vui.</p>
+            </div><a class="button button-primary" href="/search.html">＋ Tìm người</a>
         </div>
         <section id="requests" class="panel content-panel">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">INVITATIONS</p>
-                    <h2>Friend requests</h2>
+                    <p class="eyebrow">LỜI MỜI</p>
+                    <h2>Lời mời kết bạn</h2>
                 </div>
             </div>
             <div class="request-columns">
                 <div>
-                    <h3>Received <span class="count-pill" data-received-count>0</span></h3>
+                    <h3>Đã nhận <span class="count-pill" data-received-count>0</span></h3>
                     <div data-received-requests class="people-list">
-                        <p class="muted">Loading requests…</p>
+                        <p class="muted">Đang tải lời mời…</p>
                     </div>
                 </div>
                 <div>
-                    <h3>Sent</h3>
+                    <h3>Đã gửi</h3>
                     <div data-sent-requests class="people-list">
-                        <p class="muted">Loading requests…</p>
+                        <p class="muted">Đang tải lời mời…</p>
                     </div>
                 </div>
             </div>
@@ -53,12 +53,12 @@
         <section class="panel content-panel">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">YOUR CIRCLE</p>
-                    <h2>All friends <span class="count-pill" data-friend-count>0</span></h2>
-                </div><a class="text-link" href="/search.html">Discover people →</a>
+                    <p class="eyebrow">VÒNG TRÒN BẠN BÈ</p>
+                    <h2>Tất cả bạn bè <span class="count-pill" data-friend-count>0</span></h2>
+                </div><a class="text-link" href="/search.html">Khám phá bạn bè →</a>
             </div>
             <div data-friends class="people-grid">
-                <p class="muted">Loading friends…</p>
+                <p class="muted">Đang tải danh sách bạn bè…</p>
             </div>
         </section>
     </main>

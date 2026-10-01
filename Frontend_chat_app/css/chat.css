@@ -3,3 +3,5 @@
 .presence-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#c2c6d1;flex:none}.presence-dot.is-online{background:#57c99f}.message-status{margin:3px 3px 0;color:#8c83dc;font-size:9px}.chat-page .status-dot.is-offline{background:#c2c6d1}
 
 .conversation-time{margin-left:auto;color:#a0a6b3;font-size:9px;font-weight:500}.conversation-item .unread-count{flex:none}
+.chat-error:not(:empty) { background: #fff8f5; border-top: 1px solid #f2e8e2; }
+[data-load-older] { align-self: center; min-height: 34px; font-size: 11px; }

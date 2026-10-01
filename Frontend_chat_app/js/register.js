@@ -13,12 +13,12 @@ form.addEventListener('submit', async event => {
   const confirmation = String(data.get('confirmPassword') || '');
   const error = form.querySelector('[data-error]');
   showMessage(error, '');
-  if (!username || !email || !displayName || !password || !confirmation) return showMessage(error, 'Complete every field to create your account.');
-  if (!validateEmail(email)) return showMessage(error, 'Enter a valid email address.');
-  if (password.length < 8) return showMessage(error, 'Your password must be at least 8 characters.');
-  if (password !== confirmation) return showMessage(error, 'Your passwords do not match.');
+  if (!username || !email || !displayName || !password || !confirmation) return showMessage(error, 'Vui lòng điền đầy đủ thông tin.');
+  if (!validateEmail(email)) return showMessage(error, 'Vui lòng nhập địa chỉ email hợp lệ.');
+  if (password.length < 8) return showMessage(error, 'Mật khẩu cần có ít nhất 8 ký tự.');
+  if (password !== confirmation) return showMessage(error, 'Mật khẩu xác nhận chưa khớp.');
   const button = form.querySelector('button[type="submit"]');
-  setBusy(button, true, 'Creating account…');
+  setBusy(button, true, 'Đang tạo tài khoản…');
   try {
     await apiData('/api/auth/register', { method: 'POST', body: JSON.stringify({ username, email, displayName, password }) });
     location.replace('/login.html?registered=1');
