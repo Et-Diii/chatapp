@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discover people · ChatApp</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/friends.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
+    <script src="/js/config.js"></script>
+    <script type="module" src="/js/search.js"></script>
+</head>
+
+<body class="app-shell">
+    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
+        <nav class="topnav" aria-label="Main navigation"><a href="/index.html">Messages</a><a
+                href="/friends.html">Friends</a><a class="active" href="/search.html">Discover</a></nav>
+        <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
+                    data-current-avatar alt=""><span data-current-name>My profile</span></a><button
+                class="button button-quiet" data-logout>Log out</button></div>
+    </header>
+    <main class="page-wrap">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">NEW CONNECTIONS</p>
+                <h1>Find your people</h1>
+                <p class="muted">Good conversations can start anywhere.</p>
+            </div>
+        </div>
+        <section class="panel content-panel discover-panel">
+            <form class="discover-search" data-search-form><label class="sr-only" for="keyword">Search by name or
+                    username</label><span aria-hidden="true">⌕</span><input id="keyword" name="keyword" type="search"
+                    placeholder="Search by name or username…" autocomplete="off"><button class="button button-primary"
+                    type="submit">Search</button></form>
+            <div class="search-meta">
+                <p data-search-message class="muted">Search for someone by their name or username.</p>
+            </div>
+            <div data-results class="people-grid"></div>
+        </section>
+    </main>
+</body>
+
+</html>

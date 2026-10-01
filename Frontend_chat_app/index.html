@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>ChatApp · Messages</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/chat.css">
+  <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
+  <script src="/js/config.js"></script>
+  <script type="module" src="/js/index.js"></script>
+</head>
+
+<body class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
+    <nav class="topnav" aria-label="Main navigation">
+      <a class="active" href="/index.html">Messages</a><a href="/friends.html">Friends</a><a
+        href="/search.html">Discover</a>
+    </nav>
+    <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
+          data-current-avatar alt=""><span data-current-name>My profile</span></a><button class="button button-quiet"
+        data-logout>Log out</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar panel">
+      <div class="sidebar-heading">
+        <div>
+          <p class="eyebrow">YOUR SPACE</p>
+          <h1>Messages</h1>
+        </div><a class="icon-button" href="/search.html" aria-label="Find people" title="Find people">＋</a>
+      </div>
+      <a class="search-link" href="/search.html"><span aria-hidden="true">⌕</span> Search people <span
+          class="key-hint">⌘ K</span></a>
+      <section class="side-section">
+        <div class="section-heading">
+          <h2>Friend requests</h2><a href="/friends.html#requests" class="text-link">View all</a>
+        </div>
+        <div data-request-preview class="compact-list">
+          <p class="muted small">Loading requests…</p>
+        </div>
+      </section>
+      <section class="side-section conversations-section">
+        <div class="section-heading">
+          <h2>Conversations</h2><span class="muted small" data-conversation-count></span>
+        </div>
+        <div data-conversations class="conversation-list">
+          <p class="muted small">Loading conversations…</p>
+        </div>
+      </section>
+      <div class="sidebar-footer"><a href="/profile.html">⚙ &nbsp;Account settings</a><span>Stay close, wherever you
+          are.</span></div>
+    </aside>
+    <section class="welcome panel">
+      <div class="welcome-art" aria-hidden="true"><span class="art-orbit orbit-one"></span><span
+          class="art-orbit orbit-two"></span><span class="art-bubble bubble-one">Hey there 👋</span><span
+          class="art-bubble bubble-two">How’s your day?</span><span class="art-center">C</span></div>
+      <p class="eyebrow">A LITTLE CLOSER</p>
+      <h2>Your conversations,<br>all in one place.</h2>
+      <p class="welcome-copy">Pick up where you left off, or find someone new to talk to.</p><a
+        class="button button-primary" href="/search.html">Find your people <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+</body>
+
+</html>

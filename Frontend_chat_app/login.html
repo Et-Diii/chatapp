@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome back · ChatApp</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <script src="/js/config.js"></script>
+    <script type="module" src="/js/login.js"></script>
+</head>
+
+<body class="auth-page"><a class="brand auth-brand" href="/login.html"><span class="brand-mark">C</span>ChatApp</a>
+    <main class="auth-layout">
+        <section class="auth-intro">
+            <p class="eyebrow">GOOD TO SEE YOU</p>
+            <h1>Conversations<br>worth coming<br><span>back to.</span></h1>
+            <p>Your people are just a message away.</p>
+            <div class="decorative-dots" aria-hidden="true">········</div>
+        </section>
+        <section class="auth-card panel">
+            <p class="eyebrow">YOUR SPACE IS WAITING</p>
+            <h2>Welcome back</h2>
+            <p class="muted">Sign in to continue the conversation.</p>
+            <form data-login-form novalidate><label for="identifier">Email or username</label><input id="identifier"
+                    name="identifier" autocomplete="username" placeholder="you@example.com" required><label
+                    for="password">Password</label><input id="password" name="password" type="password"
+                    autocomplete="current-password" placeholder="Enter your password" required>
+                <p class="form-error" data-error role="alert" aria-live="polite"></p><button
+                    class="button button-primary button-full" type="submit"><span data-button-label>Log in</span><span
+                        aria-hidden="true">→</span></button>
+            </form>
+            <p class="auth-switch">New to ChatApp? <a href="/register.html">Create an account</a></p>
+        </section>
+    </main>
+    <footer class="auth-footer">Made for the conversations that matter.</footer>
+</body>
+
+</html>

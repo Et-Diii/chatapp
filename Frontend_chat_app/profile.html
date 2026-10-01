@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your profile · ChatApp</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js" defer></script>
+    <script src="/js/config.js"></script>
+    <script type="module" src="/js/profile.js"></script>
+</head>
+
+<body class="app-shell">
+    <header class="topbar"><a class="brand" href="/index.html"><span class="brand-mark">C</span>ChatApp</a>
+        <nav class="topnav" aria-label="Main navigation"><a href="/index.html">Messages</a><a
+                href="/friends.html">Friends</a><a href="/search.html">Discover</a></nav>
+        <div class="top-actions"><a class="profile-link" href="/profile.html"><img class="avatar avatar-sm"
+                    data-current-avatar alt=""><span data-current-name>My profile</span></a><button
+                class="button button-quiet" data-logout>Log out</button></div>
+    </header>
+    <main class="page-wrap profile-wrap">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">ACCOUNT</p>
+                <h1>Your profile</h1>
+                <p class="muted">Make this space feel like you.</p>
+            </div>
+        </div>
+        <div class="profile-layout">
+            <section class="panel profile-summary">
+                <div class="profile-cover"></div><img class="avatar avatar-xl" data-profile-avatar alt="Profile avatar">
+                <h2 data-profile-name>Loading profile…</h2>
+                <p class="muted" data-profile-username></p><span class="online-label" data-profile-status><i></i>
+                    Offline</span>
+                <div class="profile-details">
+                    <div><span>Email</span><strong data-profile-email>—</strong></div>
+                    <div><span>Username</span><strong data-profile-handle>—</strong></div>
+                </div>
+            </section>
+            <section class="panel content-panel profile-edit">
+                <p class="eyebrow">PERSONAL DETAILS</p>
+                <h2>Edit your profile</h2>
+                <p class="muted">Choose how friends see you.</p>
+                <form data-profile-form><label for="editDisplayName">Display name</label><input id="editDisplayName"
+                        name="displayName" autocomplete="name" required><label for="avatarUrl">Avatar image
+                        URL</label><input id="avatarUrl" name="avatarUrl" type="url"
+                        placeholder="https://example.com/photo.jpg">
+                    <p class="form-hint">Use a publicly accessible image link.</p>
+                    <p class="form-error" data-error role="alert" aria-live="polite"></p>
+                    <p class="form-success" data-success role="status" aria-live="polite"></p><button
+                        class="button button-primary" type="submit">Save changes <span
+                            aria-hidden="true">→</span></button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
